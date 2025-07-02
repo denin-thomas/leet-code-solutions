@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int i, j, max = 1;
+        vector<int> length(nums.size());
+        for (i = 0; i < nums.size(); i++) {
+            length[i] = 1;
+        }
+        for (i = 0; i < nums.size(); i++) {
+            for (j = 0; j < i; j++) {
+                if (nums[j] < nums[i] && length[i] < length[j] + 1) {
+                    length[i] = length[j] + 1;
+                    if (length[i] > max) {
+                        max = length[i];
+                    }
+                }
+            }
+        }
+
+        return max;
+    }
+};
